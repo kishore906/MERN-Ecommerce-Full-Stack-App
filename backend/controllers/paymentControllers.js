@@ -20,7 +20,7 @@ export const stripeCheckoutSession = catchAsyncErrors(
           },
           unit_amount: item?.price * 100,
         },
-        tax_rates: ["txr_1OquuKFMvsHFrAPeWaJ1qirz"],
+        tax_rates: ["taxkey"],
         quantity: item?.quantity,
       };
     });
@@ -29,8 +29,8 @@ export const stripeCheckoutSession = catchAsyncErrors(
 
     const shipping_rate =
       body?.itemsPrice >= 200
-        ? "shr_1OqukDFMvsHFrAPe6I4Gq3sy"
-        : "shr_1OquiEFMvsHFrAPe8vn30LZ5";
+        ? "free_key"
+        : "shipping_key";
 
     // Creating a stripe session
     const session = await stripe.checkout.sessions.create({
